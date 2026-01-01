@@ -28,13 +28,23 @@ MODE_LOSE = 6
 MODE_WIN = 7
 
 #Define colors
-COLOR_OFF = 0
-COLOR_RED = 1
-COLOR_YELLOW = 2
-COLOR_GREEN = 3
-COLOR_BLUE = 4
-COLOR_PURPLE = 5
-COLOR_WHITE = 6
+COLOR_OFF = "color_off"
+COLOR_RED = "color_red"
+COLOR_YELLOW = "color_yellow"
+COLOR_GREEN = "color_green"
+COLOR_BLUE = "color_blue"
+COLOR_PURPLE = "color_purple"
+COLOR_WHITE = "color_white"
+
+LED_PIN_STATES_CONFIG_DICT = {
+    "color_off": (0,0,0),
+    "color_red": (1,0,0),
+    "color_yellow": (1,1,0),
+    "color_green": (0,1,0),
+    "color_blue": (0,0,1),
+    "color_purple": (1,0,1),
+    "color_white": (1,1,1)
+}
 
 #Other constants
 TIME_ANNOUNCE_DIFFICULTY = 1.1
@@ -100,19 +110,7 @@ LEVELS = [(8000, 0.7, 9.0, 1.30, 2.0, 4.0, 1, 1),
 
 #Set the color of the LEDs
 def set_color(c):
-    r,g,b = 0,0,0
-    if c == COLOR_RED:
-        r,g,b = 1,0,0
-    elif c == COLOR_YELLOW:
-        r,g,b = 1,1,0
-    elif c == COLOR_GREEN:
-        r,g,b = 0,1,0
-    elif c == COLOR_BLUE:
-        r,g,b = 0,0,1
-    elif c == COLOR_PURPLE:
-        r,g,b = 1,0,1
-    elif c == COLOR_WHITE:
-        r,g,b = 1,1,1
+    r,g,b = LED_PIN_STATES_CONFIG_DICT[c]
     GPIO.output(LED_R, GPIO.LOW if r == 0 else GPIO.HIGH)
     GPIO.output(LED_G, GPIO.LOW if g == 0 else GPIO.HIGH)
     GPIO.output(LED_B, GPIO.LOW if b == 0 else GPIO.HIGH)
