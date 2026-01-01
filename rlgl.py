@@ -36,7 +36,7 @@ COLOR_BLUE = "color_blue"
 COLOR_PURPLE = "color_purple"
 COLOR_WHITE = "color_white"
 
-LED_PIN_STATES_CONFIG_DICT = {
+LED_PIN_STATES_DICT = {
     "color_off": (0,0,0),
     "color_red": (1,0,0),
     "color_yellow": (1,1,0),
@@ -110,7 +110,7 @@ LEVELS = [(8000, 0.7, 9.0, 1.30, 2.0, 4.0, 1, 1),
 
 #Set the color of the LEDs
 def set_color(c):
-    r,g,b = LED_PIN_STATES_CONFIG_DICT[c]
+    r,g,b = LED_PIN_STATES_DICT[c]
     GPIO.output(LED_R, GPIO.LOW if r == 0 else GPIO.HIGH)
     GPIO.output(LED_G, GPIO.LOW if g == 0 else GPIO.HIGH)
     GPIO.output(LED_B, GPIO.LOW if b == 0 else GPIO.HIGH)
